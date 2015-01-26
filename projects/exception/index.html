@@ -38,7 +38,7 @@
     <div>
       <h1>Exception Notifier</h1>
       <p class="lead">This quick sample demonstrates how to use Kanal App to receive notifications about exceptions in your node server.
-        <br>
+        
 
     </div>
 
@@ -50,28 +50,26 @@
         <h4>Step 2</h4>
         <p>See the source code for a sample on how to publish to your channel.</p>
         <p>The gist:</p>
-        <code>
+        <pre>
           var kanalNotify = function kanalNotify(err) {
-          <br> //one could do exception handling here as well
-          <br> superagent .post(kanalConfig.url + '/api/channels/' + kanalConfig.channelId + '/messages')
-          <br> .set('Authorization', 'Bearer ' + kanalConfig.token)
-          <br> .send({
-          <br> content: err
-          <br> })
-          <br> .end(function(res) {
-          <br> if (res.ok) {
-          <br> console.log('Success ' + JSON.stringify(res.body));
-          <br> } else {
-          <br> console.log('Error ' + res.text);
-          <br> }
-          <br> });
-          <br> }
-          <br> process.on('uncaughtException', function(err) {
-          <br> console.log('Caught unhandled exception: ' + err);
-          <br> kanalNotify(err);
-          <br> });
-          <br>
-        </code>
+               //one could do exception handling here as well
+               superagent .post(kanalConfig.url + '/api/channels/' + kanalConfig.channelId + '/messages')
+                    .set('Authorization', 'Bearer ' + kanalConfig.token)
+                    .send({ content: err })
+                    .end(function(res) {
+                   if (res.ok) {
+                        console.log('Success ' + JSON.stringify(res.body));
+                   } else {
+                    console.log('Error ' + res.text);
+                   }
+               });
+           }
+           process.on('uncaughtException', function(err) {
+           console.log('Caught unhandled exception: ' + err);
+           kanalNotify(err);
+           });
+          
+        </pre>
       </div>
       <h4>Step 3</h4>
       <p>This is it. Now rest easy knowing that you will get notified if something goes wrong on your server side.</p>
