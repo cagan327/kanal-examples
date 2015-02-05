@@ -51,6 +51,7 @@
         <p>See the source code for a sample on how to publish to your channel.</p>
         <p>The gist:</p>
         <pre>
+        <code>
           var kanalNotify = function kanalNotify(err) {
                //one could do exception handling here as well
                superagent .post(kanalConfig.url + '/api/channels/' + kanalConfig.channelId + '/messages')
@@ -68,7 +69,7 @@
            console.log('Caught unhandled exception: ' + err);
            kanalNotify(err);
            });
-          
+          </code>
         </pre>
       </div>
       <h4>Step 3</h4>
